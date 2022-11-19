@@ -8,7 +8,7 @@ const Container = styled.div`
         rgba(255,255,255,0.5), 
         rgba(255,255,255,0.5)
     ), 
-    url('https://lookstore.vn/images/banners/resized/web-cover-30-11-1638441627.jpg') center;
+    url('/images/register-bg.png') center;
 
     background-size: cover;
     display: flex;
