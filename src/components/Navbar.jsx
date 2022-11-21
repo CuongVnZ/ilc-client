@@ -3,7 +3,7 @@ import { Search, ShoppingCartOutlined } from '@mui/icons-material';
 import React from 'react'
 import styled from 'styled-components'
 import {mobile} from '../responsive'
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from "../redux/userRedux"
 
@@ -84,7 +84,6 @@ const Navbar = () => {
     const user = useSelector(state => state.user.currentUser)
 
     const dispatch = useDispatch();
-    let navigate = useNavigate();
 
     const logoutHandler = () => {
         dispatch(logout())
