@@ -115,7 +115,9 @@ const Navbar = () => {
                     <MenuItem>LOGIN</MenuItem>
                 </StyledLink> }
                 { user && 
-                    <MenuItem>HI {user.username} !</MenuItem>
+                    <StyledLink to="/profile">
+                        <MenuItem>HI {user.username} !</MenuItem>
+                    </StyledLink>
                 }
                 { user && 
                     <MenuItem onClick={logoutHandler}>LOGOUT</MenuItem>
