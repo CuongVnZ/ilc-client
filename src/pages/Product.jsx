@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import { publicRequest } from "../requestMethods";
 import { addProduct } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
+import { ColorRing } from  'react-loader-spinner'
 
 const Container = styled.div`
 
@@ -22,6 +23,24 @@ const Wrapper = styled.div`
     ${mobile({ padding: "10px", flexDirection: "column" })}
 `;
 
+const LoadingWrapper = styled.div`
+
+`
+
+const Loading = styled.div`
+    height: 100vh;
+    width: 100vw;
+    z-index: 9999;
+    background-color: #7c4c23;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    transition: all 0.3s;
+    top: 0;
+    bottom: 0;
+`
 const PathText = styled.nav`
     letter-spacing: .5px;
     line-height: 1.7;
@@ -176,13 +195,13 @@ const OtherProducts = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
-`;
+    `;
 
 const OtherProductsText = styled.span`
     justify-content: center;
     font-weight: 300;
     font-size: 30px;
-`;
+    `;
 
 const Hr = styled.hr`
     background-color: #eee;
@@ -190,7 +209,7 @@ const Hr = styled.hr`
     height: 1px;
     margin-top: 5px;
     margin-bottom: 5px;
-`;
+    `;
 
 const Product = () => {
     const location = useLocation();
@@ -199,7 +218,10 @@ const Product = () => {
     const [quantity, setQuantity] = useState(1);
     const [color, setColor] = useState("");
     const [size, setSize] = useState("S");
-    const [sizeStyle, setSizeStyle] = useState([                {
+    const [loading, setLoading] = useState("show");
+
+    const [sizeStyle, setSizeStyle] = useState([
+    {
         backgroundColor: "#af8a64",
         color: "#fff"
     },
@@ -211,6 +233,8 @@ const Product = () => {
         backgroundColor: "#fff",
         color: "#666666"
     }]);
+
+
     const dispatch = useDispatch();
     let navigate = useNavigate();
 
@@ -222,6 +246,7 @@ const Product = () => {
                     return navigate("/");
                 }
                 setProduct(res.data);
+                setLoading("hidden")
             } catch {}
         };
         getProduct();
@@ -293,10 +318,25 @@ const Product = () => {
         setSize(value)
         
     };
+
+    
+
+
   return (
     <Container>
         <Announcement />
         <Navbar />
+        <LoadingWrapper>
+            <Loading style={{visibility: loading}}> 
+                <ColorRing
+                    height="80"
+                    width="80"
+                    visible={true}
+                    ariaLabel="blocks-loading"
+                    colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+                />
+            </Loading>
+        </LoadingWrapper>
         <PathText>HOME | PRODUCTS | {product.title}</PathText>
         <Wrapper>
             <ImgContainer>

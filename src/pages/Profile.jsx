@@ -13,10 +13,25 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { useSelector } from 'react-redux';
 
-import { Audio } from  'react-loader-spinner'
+import { ColorRing } from  'react-loader-spinner'
 
 import { userRequest, updateToken } from "../requestMethods";
 
+
+const Loading = styled.div`
+    height: 100vh;
+    width: 100vw;
+    z-index: 9999;
+    background-color: #7c4c23;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-items: center;
+    transition: all 0.3s;
+    top: 0;
+    bottom: 0;
+`
 
 const columns = [
   { id: '_id', label: 'ID', minWidth: 170 },
@@ -59,20 +74,6 @@ export default function Profile() {
     const [loading, setLoading] = useState("show");
 
     const user = useSelector(state => state.user.currentUser)
-    
-    const Loading = styled.div`
-        height: 100%;
-        width: 100%;
-        z-index: 9999;
-        background-color: #7c4c23;
-        position: absolute;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        justify-items: center;
-        transition: all 0.3s;
-        visibility: ${loading};
-    `
   
     const handleChangePage = (event, newPage) => {
       setPage(newPage);
@@ -103,17 +104,15 @@ export default function Profile() {
         <Container>
             <Announcement />
             <Navbar />
-        <Loading>
-        <Audio
-            height = "80"
-            width = "80"
-            radius = "9"
-            color = 'white'
-            ariaLabel = 'three-dots-loading'     
-            wrapperStyle
-            wrapperClass
-        />
-        </Loading>
+            <Loading style={{visibility: loading}}>
+            <ColorRing
+                height="80"
+                width="80"
+                visible={true}
+                ariaLabel="blocks-loading"
+                colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+            />
+            </Loading>
             <Wrapper>
                 <span>PROFILE</span>
                 <Paper sx={{ width: '100%', overflow: 'hidden' }}>
