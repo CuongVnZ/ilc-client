@@ -1,5 +1,9 @@
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { mobile } from '../responsive';
+import { register } from '../redux/apiCalls';
+import { useState } from 'react';
+import { publicRequest } from '../requestMethods';
 
 const Container = styled.div`
     width: 100vw;
@@ -48,23 +52,53 @@ const Button = styled.button`
     cursor: pointer;
 `;
 
+const Error = styled.span`
+    color: red;
+`;
+
 const Register = () => {
+
+    const [inputs, setInputs] = useState({});
+    const [error, setError] = useState(null);
+
+    const handleClick = (e) => {
+        e.preventDefault()
+
+        const register = async () => {
+            try {
+                var res = await publicRequest.post("/auth/register", {
+                    ...inputs,
+                    points: 0
+                })
+                console.log(res)
+            } catch {}
+        };
+        register();
+    }
+
+    const handleChange = (e) => {
+        setInputs((prev) => {
+          return { ...prev, [e.target.name]: e.target.value };
+        });
+    };
+
     return (
         <Container>
             <Wrapper>
                 <Title>CREATE AN ACCOUNT</Title>
                 <Form>
-                    <Input type="text" placeholder="First Name" />
-                    <Input type="text" placeholder="Last Name" />
-                    <Input type="text" placeholder="Username" />
-                    <Input type="text" placeholder="Email" />
-                    <Input type="text" placeholder="Phone number" />
-                    <Input type="text" placeholder="Password" />
-                    <Input type="text" placeholder="Confirm Password" />
+                    <Input type="text" name="firstname" placeholder="First Name" />
+                    <Input type="text" name="firstname" placeholder="Last Name" />
+                    <Input type="text" name="username" placeholder="Username" onChange={handleChange}/>
+                    <Input type="text" name="email" placeholder="Email" onChange={handleChange}/>
+                    <Input type="text" name="phone" placeholder="Phone number" onChange={handleChange}/>
+                    <Input type="text" name="password" placeholder="Password" onChange={handleChange}/>
+                    <Input type="text" name="confirmPassword" placeholder="Confirm Password" onChange={handleChange}/>
                     <Agreement>
                         By creating an account, you agree to our <b>Terms of Service</b> and <b>Privacy Policy</b>
                     </Agreement>
-                    <Button>CREATE ACCOUNT</Button>
+                    <Button onClick={handleClick}>CREATE ACCOUNT</Button>
+                    {error && <Error>Something went wrong...</Error>}
                 </Form>
             </Wrapper>
         </Container>

@@ -111,7 +111,7 @@ const FilterButtonArea = styled.div`
     margin-bottom: 20px;
 `
 
-const FilterButton = styled.div`
+const FilterButton = styled.button`
     display: flex;
     box-sizing: border-box;
     margin: 0;
@@ -199,6 +199,18 @@ const Product = () => {
     const [quantity, setQuantity] = useState(1);
     const [color, setColor] = useState("");
     const [size, setSize] = useState("S");
+    const [sizeStyle, setSizeStyle] = useState([                {
+        backgroundColor: "#af8a64",
+        color: "#fff"
+    },
+    {
+        backgroundColor: "#fff",
+        color: "#666666"
+    },
+    {
+        backgroundColor: "#fff",
+        color: "#666666"
+    }]);
     const dispatch = useDispatch();
     let navigate = useNavigate();
 
@@ -228,6 +240,59 @@ const Product = () => {
             addProduct({ ...product, quantity, color, size })
         );
     };
+
+    const handleSize = (e) => {
+        var value = e.target.value
+        console.log(value)
+        if (value === "S"){
+            setSizeStyle([
+                {
+                    backgroundColor: "#af8a64",
+                    color: "#fff"
+                },
+                {
+                    backgroundColor: "#fff",
+                    color: "#666666"
+                },
+                {
+                    backgroundColor: "#fff",
+                    color: "#666666"
+                },
+            ])
+        }else if (value === "M"){
+            setSizeStyle([
+                {
+                    backgroundColor: "#fff",
+                    color: "#666666"
+                },
+                {
+                    backgroundColor: "#af8a64",
+                    color: "#fff"
+                },
+                {
+                    backgroundColor: "#fff",
+                    color: "#666666"
+                },
+            ])
+        }else if (value === "L"){
+            setSizeStyle([
+                {
+                    backgroundColor: "#fff",
+                    color: "#666666"
+                },
+                {
+                    backgroundColor: "#fff",
+                    color: "#666666"
+                },
+                {
+                    backgroundColor: "#af8a64",
+                    color: "#fff"
+                },
+            ])
+        }
+        setSize(value)
+        
+    };
   return (
     <Container>
         <Announcement />
@@ -256,15 +321,15 @@ const Product = () => {
                         </FilterButtonArea>
                     <Filter>
                         <FilterTitle>Size</FilterTitle>
-                        <FilterSize onChange={(e) => setSize(e.target.value)}>
+                        {/* <FilterSize onChange={(e) => setSize(e.target.value)}>
                             {product.size?.map((s) => (
                                 <FilterSizeOption key={s}>{s}</FilterSizeOption>
                             ))}
-                        </FilterSize>
+                        </FilterSize> */}
                         <FilterButtonArea>
-                            <FilterButton>Small + 0 USD</FilterButton>
-                            <FilterButton>Medium + 0.5 USD</FilterButton>
-                            <FilterButton>Large + 1 USD</FilterButton>
+                            <FilterButton value="S" onClick={handleSize} style={sizeStyle[0]}>Small + 0 USD</FilterButton>
+                            <FilterButton value="M" onClick={handleSize} style={sizeStyle[1]}>Medium + 0.5 USD</FilterButton>
+                            <FilterButton value="L" onClick={handleSize} style={sizeStyle[2]}>Large + 1 USD</FilterButton>
                         </FilterButtonArea>
                     </Filter>
                 </FilterContainer>
