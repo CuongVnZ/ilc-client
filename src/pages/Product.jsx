@@ -4,6 +4,7 @@ import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
+import Products from '../components/Products'
 import { mobile } from "../responsive";
 import { useNavigate , useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -11,18 +12,29 @@ import { publicRequest } from "../requestMethods";
 import { addProduct } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
 
-const Container = styled.div``;
+const Container = styled.div`
+
+`;
 
 const Wrapper = styled.div`
-    padding: 0px 50px 50px 50px;
+    padding: 20px;
     display: flex;
     ${mobile({ padding: "10px", flexDirection: "column" })}
 `;
 
 const PathText = styled.nav`
-    padding: 40px 50px;
-    font-size: 20px;
-    font-weight: 300;
+    letter-spacing: .5px;
+    line-height: 1.7;
+    color: #000;
+    font-size: 14px;
+    box-sizing: border-box;
+    display: block;
+    list-style: none;
+    background: #f5f5f5;
+    text-transform: uppercase;
+    padding: 7px 15px;
+    border-radius: 0;
+    margin: 20px;
 `;
 
 const ImgContainer = styled.div`
@@ -30,8 +42,8 @@ const ImgContainer = styled.div`
 `;
 
 const Image = styled.img`
-    width: 70vh;
-    height: 70vh;
+    width: 50vh;
+    height: 50vh;
     border-radius: 10%;
     -webkit-box-shadow: 0px 0px 11px -1px rgba(0,0,0,0.25); 
     box-shadow: 0px 0px 11px -1px rgba(0,0,0,0.25);
@@ -59,16 +71,19 @@ const Price = styled.span`
 `;
 
 const FilterContainer = styled.div`
-    width: 50%;
+    width: 100%;
     margin: 30px 0px;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     ${mobile({ width: "100%" })}
 `;
 
 const Filter = styled.div`
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    margin-right: auto;
+    margin-bottom: 10px;
 `;
 
 const FilterTitle = styled.span`
@@ -86,14 +101,41 @@ const FilterColor = styled.div`
 `;
 
 const FilterSize = styled.select`
-    margin-left: 10px;
+    margin-right: auto;
     padding: 5px;
 `;
+
+const FilterButtonArea = styled.div`
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+`
+
+const FilterButton = styled.div`
+    display: flex;
+    box-sizing: border-box;
+    margin: 0;
+    outline: 0;
+    vertical-align: baseline;
+    transition: all 0.3s;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 20px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    height: 40px;
+    line-height: 1;
+    font-weight: 400;
+    margin-right: 16px;
+    font-size: 14px;
+    color: #666666;
+`
 
 const FilterSizeOption = styled.option``;
 
 const AddContainer = styled.div`
-    width: 50%;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -110,7 +152,7 @@ const Amount = styled.span`
     width: 30px;
     height: 30px;
     border-radius: 10px;
-    border: 1px solid teal;
+    border: 1px solid #af8a64;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -119,13 +161,35 @@ const Amount = styled.span`
 
 const Button = styled.button`
     padding: 15px;
-    border: 2px solid teal;
+    border: 2px solid #af8a64;
     background-color: white;
     cursor: pointer;
     font-weight: 500;
     &:hover {
         background-color: #f8f4f4;
     }
+    margin-left: auto;
+`;
+
+const OtherProducts = styled.div`
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+`;
+
+const OtherProductsText = styled.span`
+    justify-content: center;
+    font-weight: 300;
+    font-size: 30px;
+`;
+
+const Hr = styled.hr`
+    background-color: #eee;
+    border: none;
+    height: 1px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 `;
 
 const Product = () => {
@@ -166,31 +230,42 @@ const Product = () => {
     };
   return (
     <Container>
-        <Navbar />
         <Announcement />
-            <PathText>HOME / PRODUCTS / CLOUDFEE ROASTED ALMOND</PathText>
+        <Navbar />
+        <PathText>HOME | PRODUCTS | {product.title}</PathText>
         <Wrapper>
             <ImgContainer>
                 <Image src={product.img} />
             </ImgContainer>
             <InfoContainer>
                 <Title>{product.title}</Title>
+                <Hr/>
                 <Desc>{product.desc}</Desc>
                 <Price>$ {product.price}</Price>
                 <FilterContainer>
                     <Filter>
-                    <FilterTitle>Color</FilterTitle>
-                        {product.color?.map((c) => (
-                            <FilterColor color={c} key={c} onClick={() => setColor(c)} />
-                        ))}
-                    </Filter>
+                        <FilterTitle>Topping</FilterTitle>
+                            {product.color?.map((c) => (
+                                <FilterColor color={c} key={c} onClick={() => setColor(c)} />
+                            ))}
+                        </Filter>
+                        <FilterButtonArea>
+                            <FilterButton>Toping1 + 0 USD</FilterButton>
+                            <FilterButton>Toping2 + 0.5 USD</FilterButton>
+                            <FilterButton>Toping3 + 1 USD</FilterButton>
+                        </FilterButtonArea>
                     <Filter>
-                    <FilterTitle>Size</FilterTitle>
-                    <FilterSize onChange={(e) => setSize(e.target.value)}>
-                        {product.size?.map((s) => (
-                            <FilterSizeOption key={s}>{s}</FilterSizeOption>
-                        ))}
-                    </FilterSize>
+                        <FilterTitle>Size</FilterTitle>
+                        <FilterSize onChange={(e) => setSize(e.target.value)}>
+                            {product.size?.map((s) => (
+                                <FilterSizeOption key={s}>{s}</FilterSizeOption>
+                            ))}
+                        </FilterSize>
+                        <FilterButtonArea>
+                            <FilterButton>Small + 0 USD</FilterButton>
+                            <FilterButton>Medium + 0.5 USD</FilterButton>
+                            <FilterButton>Large + 1 USD</FilterButton>
+                        </FilterButtonArea>
                     </Filter>
                 </FilterContainer>
                 <AddContainer>
@@ -203,6 +278,11 @@ const Product = () => {
                 </AddContainer>
             </InfoContainer>
         </Wrapper>
+        <Hr/>
+        <OtherProducts>
+            <OtherProductsText>OTHER PRODUCTS</OtherProductsText>
+            <Products/>
+        </OtherProducts>
         <Newsletter />
         <Footer />
     </Container>

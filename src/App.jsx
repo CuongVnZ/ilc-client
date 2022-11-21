@@ -14,6 +14,7 @@ import {
 import {useLayoutEffect} from 'react';
 import Success from "./pages/Success";
 import { useSelector } from "react-redux";
+import Profile from "./pages/Profile";
 // import { useSelector } from "react-redux";
 
 const Wrapper = ({children}) => {
@@ -38,6 +39,7 @@ const App = () => {
         <Route path="/success" element={<Success/>}/>
         <Route path="/login" element={user ? <Navigate to="/" /> : <Login />}/>
         <Route path="/register" element={user ? <Navigate to="/" /> : <Register />}/>
+        <Route path="/profile" element={!user ? <Navigate to="/" /> : <Profile />}/>
       </Routes>
       </Wrapper>
     </Router>

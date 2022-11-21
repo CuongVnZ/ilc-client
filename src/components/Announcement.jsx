@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const Container = styled.div`
   height: 30px;
-  background-color: teal;
+  background-color: #af8a64;
   color: white;
   display: flex;
   align-items: center;

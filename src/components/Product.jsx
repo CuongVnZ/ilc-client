@@ -25,12 +25,12 @@ const Info = styled.div`
 const Container = styled.div`
     flex: 1;
     margin: 5px;
-    min-width: 280px;
-    height: 350px;
+    min-width: 250px;
+    height: 250px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f5fbfd;
+    background-color: #f7f4ee;
     position: relative;
 
     &:hover ${Info} {
@@ -39,8 +39,8 @@ const Container = styled.div`
     
 `;
 const Circle = styled.div`
-    width: 200px;
-    height: 200px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     background-color: white;
     position: absolute;
@@ -61,10 +61,15 @@ const Icon = styled.div`
     margin: 10px;
     transform:all 0.5s ease;
     &:hover {
-        background-color: #e9f5f5;
+        background-color: #f7d8a7;
         transform: scale(1.1);
     }
 `;
+
+const Title = styled.div`
+    display: inline-block;
+    justify-content: center;
+`
 
 const Product = ({item}) => {
     return (
@@ -84,6 +89,7 @@ const Product = ({item}) => {
                     <FavoriteBorderOutlined/>
                 </Icon>
             </Info>
+            {/* <Title>Test</Title> */}
         </Container>
     )
 }
