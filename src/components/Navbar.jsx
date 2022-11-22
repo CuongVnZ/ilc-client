@@ -92,16 +92,19 @@ const Navbar = () => {
     <Container>
         <Wrapper>
             <Left>
-                <Language>EN</Language>
-                <SearchContainer>
+                {/* <Language>EN</Language> */}
+                {/* <SearchContainer>
                     <Input placeholder="Search" />
                     <Search style={{color:"gray", fontSize:16}}/>
-                </SearchContainer>
-            </Left>
-            <Center>
+                </SearchContainer> */}
                 <StyledLink to="/">
                     <Logo>Dreamy Coffee.</Logo>
                 </StyledLink>
+            </Left>
+            <Center>
+                {/* <StyledLink to="/">
+                    <Logo>Dreamy Coffee.</Logo>
+                </StyledLink> */}
             </Center>
             <Right>
                 { !user && 
