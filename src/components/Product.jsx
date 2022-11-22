@@ -66,6 +66,12 @@ const Icon = styled.div`
     }
 `;
 
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    text-decoration-style: none;
+    color: inherit;
+`;
+
 const Title = styled.div`
     display: inline-block;
     justify-content: center;
@@ -81,9 +87,9 @@ const Product = ({item}) => {
                     <ShoppingCartOutlined/>
                 </Icon>
                 <Icon>
-                    <Link to={`/product/${item.id}`}>
+                    <StyledLink to={`/product/${item.id}`}>
                         <SearchOutlined />
-                    </Link>
+                    </StyledLink>
                 </Icon>
                 <Icon>
                     <FavoriteBorderOutlined/>

@@ -13,25 +13,8 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import { useSelector } from 'react-redux';
 
-import { ColorRing } from  'react-loader-spinner'
-
 import { userRequest, updateToken } from "../requestMethods";
-
-
-const Loading = styled.div`
-    height: 100vh;
-    width: 100vw;
-    z-index: 9999;
-    background-color: #7c4c23;
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    justify-items: center;
-    transition: all 0.3s;
-    top: 0;
-    bottom: 0;
-`
+import BusyLoading from '../components/BusyLoading';
 
 const columns = [
   { id: '_id', label: 'ID', minWidth: 170 },
@@ -61,6 +44,11 @@ const columns = [
 
 const Container = styled.div``;
 
+const Title = styled.h1`
+    font-weight: 300;
+    text-align: center;
+`;
+
 const Wrapper = styled.div`
     padding: 5%;
     `;
@@ -89,9 +77,10 @@ export default function Profile() {
         updateToken()
         const getOrders = async () => {
             try {
+                setLoading(<BusyLoading/>)
                 const res = await userRequest.get("orders/find/" + user._id);
                 setOrders(res.data);
-                setLoading("hidden")
+                setLoading(null)
             } catch (err) {
                 console.log(err)
             }
@@ -104,17 +93,9 @@ export default function Profile() {
         <Container>
             <Announcement />
             <Navbar />
-            <Loading style={{visibility: loading}}>
-            <ColorRing
-                height="80"
-                width="80"
-                visible={true}
-                ariaLabel="blocks-loading"
-                colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
-            />
-            </Loading>
+            {loading}
             <Wrapper>
-                <span>PROFILE</span>
+                <Title>ORDERS HISTORY</Title>
                 <Paper sx={{ width: '100%', overflow: 'hidden' }}>
                 <TableContainer sx={{ maxHeight: 440 }}>
                     <Table stickyHeader aria-label="sticky table">

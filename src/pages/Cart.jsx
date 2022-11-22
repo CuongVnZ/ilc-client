@@ -175,10 +175,10 @@ const Cart = () => {
                 <Top>
                     <TopButton>CONTINUE SHOPPING</TopButton>
                     <TopTexts>
-                        <TopText>Shopping Bag ({cart.quantity})</TopText>
+                        {/* <TopText>Clear bag</TopText> */}
                         <TopText>Your Wishlist (0)</TopText>
                     </TopTexts>
-                    <TopButton type="filled">CHECKOUT NOW</TopButton>
+                    <TopButton type="filled">CLEAR</TopButton>
                 </Top>
                 <Bottom>
                     <Info>
@@ -189,7 +189,8 @@ const Cart = () => {
                                     <Details>
                                         <ProductName><b>Product:</b> {product.title}</ProductName>
                                         <ProductID><b>ID:</b> {product._id}</ProductID>
-                                        <ProductColor color="black"/>
+                                        {/* <ProductColor color="black"/> */}
+                                        <span>Topping: </span>
                                         <ProductSize>
                                             <b>Size:</b> {product.size}
                                         </ProductSize>

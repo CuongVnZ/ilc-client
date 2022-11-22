@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { publicRequest } from "../requestMethods";
 import { addProduct } from "../redux/cartRedux";
 import { useDispatch } from "react-redux";
-import { ColorRing } from  'react-loader-spinner'
+import BusyLoading from "../components/BusyLoading";
 
 const Container = styled.div`
 
@@ -23,24 +23,6 @@ const Wrapper = styled.div`
     ${mobile({ padding: "10px", flexDirection: "column" })}
 `;
 
-const LoadingWrapper = styled.div`
-
-`
-
-const Loading = styled.div`
-    height: 100vh;
-    width: 100vw;
-    z-index: 9999;
-    background-color: #7c4c23;
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    justify-items: center;
-    transition: all 0.3s;
-    top: 0;
-    bottom: 0;
-`
 const PathText = styled.nav`
     letter-spacing: .5px;
     line-height: 1.7;
@@ -218,7 +200,7 @@ const Product = () => {
     const [quantity, setQuantity] = useState(1);
     const [color, setColor] = useState("");
     const [size, setSize] = useState("S");
-    const [loading, setLoading] = useState("show");
+    const [loading, setLoading] = useState(<BusyLoading/>);
 
     const [sizeStyle, setSizeStyle] = useState([
     {
@@ -241,12 +223,13 @@ const Product = () => {
     useEffect(() => {
         const getProduct = async () => {
             try {
+                setLoading(<BusyLoading/>)
                 const res = await publicRequest.get("/products/find/" + id);
                 if (JSON.stringify(res.data) === "{}" ) {
                     return navigate("/");
                 }
                 setProduct(res.data);
-                setLoading("hidden")
+                setLoading(null)
             } catch {}
         };
         getProduct();
@@ -268,7 +251,6 @@ const Product = () => {
 
     const handleSize = (e) => {
         var value = e.target.value
-        console.log(value)
         if (value === "S"){
             setSizeStyle([
                 {
@@ -319,79 +301,66 @@ const Product = () => {
         
     };
 
-    
-
-
-  return (
-    <Container>
-        <Announcement />
-        <Navbar />
-        <LoadingWrapper>
-            <Loading style={{visibility: loading}}> 
-                <ColorRing
-                    height="80"
-                    width="80"
-                    visible={true}
-                    ariaLabel="blocks-loading"
-                    colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
-                />
-            </Loading>
-        </LoadingWrapper>
-        <PathText>HOME | PRODUCTS | {product.title}</PathText>
-        <Wrapper>
-            <ImgContainer>
-                <Image src={product.img} />
-            </ImgContainer>
-            <InfoContainer>
-                <Title>{product.title}</Title>
-                <Hr/>
-                <Desc>{product.desc}</Desc>
-                <Price>$ {product.price}</Price>
-                <FilterContainer>
-                    <Filter>
-                        <FilterTitle>Topping</FilterTitle>
-                            {product.color?.map((c) => (
-                                <FilterColor color={c} key={c} onClick={() => setColor(c)} />
-                            ))}
+    return (
+        <Container>
+            <Announcement />
+            <Navbar />
+            {loading}
+            <PathText>HOME | PRODUCTS | {product.title}</PathText>
+            <Wrapper>
+                <ImgContainer>
+                    <Image src={product.img} />
+                </ImgContainer>
+                <InfoContainer>
+                    <Title>{product.title}</Title>
+                    <Hr/>
+                    <Desc>{product.desc}</Desc>
+                    <Price>$ {product.price}</Price>
+                    <FilterContainer>
+                        <Filter>
+                            <FilterTitle>Topping</FilterTitle>
+                                {product.color?.map((c) => (
+                                    <FilterColor color={c} key={c} onClick={() => setColor(c)} />
+                                ))}
+                            </Filter>
+                            <FilterButtonArea>
+                                <FilterButton>Toping1 + 0 USD</FilterButton>
+                                <FilterButton>Toping2 + 0.5 USD</FilterButton>
+                                <FilterButton>Toping3 + 1 USD</FilterButton>
+                            </FilterButtonArea>
+                        <Filter>
+                            <FilterTitle>Size</FilterTitle>
+                            {/* <FilterSize onChange={(e) => setSize(e.target.value)}>
+                                {product.size?.map((s) => (
+                                    <FilterSizeOption key={s}>{s}</FilterSizeOption>
+                                ))}
+                            </FilterSize> */}
+                            <FilterButtonArea>
+                                <FilterButton value="S" onClick={handleSize} style={sizeStyle[0]}>Small + 0 USD</FilterButton>
+                                <FilterButton value="M" onClick={handleSize} style={sizeStyle[1]}>Medium + 0.5 USD</FilterButton>
+                                <FilterButton value="L" onClick={handleSize} style={sizeStyle[2]}>Large + 1 USD</FilterButton>
+                            </FilterButtonArea>
                         </Filter>
-                        <FilterButtonArea>
-                            <FilterButton>Toping1 + 0 USD</FilterButton>
-                            <FilterButton>Toping2 + 0.5 USD</FilterButton>
-                            <FilterButton>Toping3 + 1 USD</FilterButton>
-                        </FilterButtonArea>
-                    <Filter>
-                        <FilterTitle>Size</FilterTitle>
-                        {/* <FilterSize onChange={(e) => setSize(e.target.value)}>
-                            {product.size?.map((s) => (
-                                <FilterSizeOption key={s}>{s}</FilterSizeOption>
-                            ))}
-                        </FilterSize> */}
-                        <FilterButtonArea>
-                            <FilterButton value="S" onClick={handleSize} style={sizeStyle[0]}>Small + 0 USD</FilterButton>
-                            <FilterButton value="M" onClick={handleSize} style={sizeStyle[1]}>Medium + 0.5 USD</FilterButton>
-                            <FilterButton value="L" onClick={handleSize} style={sizeStyle[2]}>Large + 1 USD</FilterButton>
-                        </FilterButtonArea>
-                    </Filter>
-                </FilterContainer>
-                <AddContainer>
-                    <AmountContainer>
-                    <Remove onClick={() => handleQuantity("dec")} style={{cursor: "pointer"}}/>
-                    <Amount>{quantity}</Amount>
-                    <Add onClick={() => handleQuantity("inc")} style={{cursor: "pointer"}}/>
-                    </AmountContainer>
-                    <Button onClick={handleClick}>ADD TO CART</Button>
-                </AddContainer>
-            </InfoContainer>
-        </Wrapper>
-        <Hr/>
-        <OtherProducts>
-            <OtherProductsText>OTHER PRODUCTS</OtherProductsText>
-            <Products/>
-        </OtherProducts>
-        <Newsletter />
-        <Footer />
-    </Container>
-  );
+                    </FilterContainer>
+                    <AddContainer>
+                        <AmountContainer>
+                            <Remove onClick={() => handleQuantity("dec")} style={{cursor: "pointer"}}/>
+                            <Amount>{quantity}</Amount>
+                            <Add onClick={() => handleQuantity("inc")} style={{cursor: "pointer"}}/>
+                        </AmountContainer>
+                        <Button onClick={handleClick}>ADD TO CART</Button>
+                    </AddContainer>
+                </InfoContainer>
+            </Wrapper>
+            <Hr/>
+            <OtherProducts>
+                <OtherProductsText>OTHER PRODUCTS</OtherProductsText>
+                <Products/>
+            </OtherProducts>
+            <Newsletter />
+            <Footer />
+        </Container>
+    );
 };
 
 export default Product;

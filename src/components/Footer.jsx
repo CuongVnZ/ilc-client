@@ -101,9 +101,9 @@ const Footer = () => {
                 <List>
                     <ListItem>Home</ListItem>
                     <ListItem>Cart</ListItem>
-                    <ListItem>Man Fashion</ListItem>
-                    <ListItem>Woman Fashion</ListItem>
-                    <ListItem>Accessories</ListItem>
+                    <ListItem>Page 1</ListItem>
+                    <ListItem>Page 2</ListItem>
+                    <ListItem>Page 3</ListItem>
                     <ListItem>My Account</ListItem>
                     <ListItem>Terms</ListItem>
                 </List>

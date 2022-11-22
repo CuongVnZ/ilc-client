@@ -1,7 +1,5 @@
-import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import { mobile } from '../responsive';
-import { register } from '../redux/apiCalls';
 import { useState } from 'react';
 import { publicRequest } from '../requestMethods';
 
