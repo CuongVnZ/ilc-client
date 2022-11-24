@@ -17,7 +17,6 @@ const Products = ({ cat, filters, sort }) => {
   
     useEffect(() => {
         const getProducts = async () => {
-            console.log(cat)
             try {
             const res = await publicRequest.get(
                 cat != "all"
