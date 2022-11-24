@@ -14,7 +14,7 @@ export const updateToken = () => {
   const user = JSON.parse(localStorage.getItem("persist:root"))?.user;
   const currentUser = user && JSON.parse(user).currentUser;
   if (!currentUser) return
-  TOKEN = JSON.parse(currentUser.accessToken || "");
+  TOKEN = currentUser.accessToken || "";
 };
 
 export const publicRequest = axios.create({
