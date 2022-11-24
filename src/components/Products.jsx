@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { popularProducts } from "../data";
+// import { popularProducts } from "../data";
 import Product from "./Product";
 import { publicRequest } from "../requestMethods";
 
@@ -17,9 +17,10 @@ const Products = ({ cat, filters, sort }) => {
   
     useEffect(() => {
         const getProducts = async () => {
+            console.log(cat)
             try {
             const res = await publicRequest.get(
-                cat
+                cat != "all"
                 ? `/products?category=${cat}`
                 : "/products"
             );
@@ -34,11 +35,11 @@ const Products = ({ cat, filters, sort }) => {
     useEffect(() => {
         cat &&
             setFilteredProducts(
-            products.filter((item) =>
-                Object.entries(filters).every(([key, value]) =>
-                item[key].includes(value)
+                products.filter((item) =>
+                    Object.entries(filters).every(([key, value]) =>
+                    item[key].includes(value)
+                    )
                 )
-            )
             );
     }, [products, cat, filters]);
   

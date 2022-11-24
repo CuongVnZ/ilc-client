@@ -14,7 +14,7 @@ const Home = () => {
         <Navbar/>
         <Slider/>
         <Categories/>
-        <Products/>
+        <Products cat="all" filters={{}} sort="newest"/>
         <Newsletter/>
         <Footer/>
     </div>

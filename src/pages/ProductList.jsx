@@ -40,7 +40,7 @@ const Option = styled.option``;
 
 const ProductList = () => {
     const location = useLocation();
-    const cat = location.pathname.split("/")[2];
+    const [category, setCategory] = useState(location.pathname.split("/")[2] ? location.pathname.split("/")[2] : null);
     const [filters, setFilters] = useState({});
     const [sort, setSort] = useState("newest");
   
@@ -52,11 +52,16 @@ const ProductList = () => {
         });
     };
 
+    const handleCategory = (e) => {
+        const value = e.target.value;
+        setCategory(value)
+    };
+
     return (
         <Container>
             <Announcement/>
             <Navbar/>
-            <Title>{cat}</Title>
+            <Title>ALL PRODUCTS</Title>
             <FilterContainer>
                 <Filter>
                     <FilterText>Filter Products:</FilterText>
@@ -69,14 +74,13 @@ const ProductList = () => {
                         <Option>Red</Option>
                         <Option>Blue</Option>
                     </Select> */}
-                    <Select name="size" onChange={handleFilters}>
-                        <Option disabled selected>
-                            Size
+                    <Select name="category" onChange={handleCategory}>
+                        <Option selected value="all">
+                            All
                         </Option>
-                        <Option>S</Option>
-                        <Option>M</Option>
-                        <Option>L</Option>
-                        <Option>XL</Option>
+                        <Option value="coffee">Coffee</Option>
+                        <Option value="tea">Juice Tea</Option>
+                        <Option value="milk-tea">Milk Tea</Option>
                     </Select>
                 </Filter>
                 <Filter>
@@ -90,7 +94,7 @@ const ProductList = () => {
                     </Select>
                 </Filter>
             </FilterContainer>
-            <Products cat={cat} filters={filters} sort={sort} />
+            <Products cat={category} filters={filters} sort={sort} />
             <Newsletter/>
             <Footer/>
         </Container>

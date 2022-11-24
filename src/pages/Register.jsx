@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { mobile } from '../responsive';
 import { useState } from 'react';
 import { publicRequest } from '../requestMethods';
+import { useNavigate } from 'react-router';
 
 const Container = styled.div`
     width: 100vw;
@@ -59,6 +60,8 @@ const Register = () => {
     const [inputs, setInputs] = useState({});
     const [error, setError] = useState(null);
 
+    const navigate = useNavigate();
+
     const handleClick = (e) => {
         e.preventDefault()
 
@@ -69,6 +72,7 @@ const Register = () => {
                     points: 0
                 })
                 console.log(res)
+                navigate("/login")
             } catch {}
         };
         register();

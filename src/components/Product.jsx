@@ -2,7 +2,7 @@ import {
     FavoriteBorderOutlined, 
     SearchOutlined, 
     ShoppingCartOutlined } 
-    from '@material-ui/icons';
+    from '@mui/icons-material';
 import { Link } from "react-router-dom";
 import styled from 'styled-components';
 

@@ -1,4 +1,4 @@
-import { Facebook, Instagram, MailOutline, Phone, Pinterest, Room, Twitter } from '@material-ui/icons';
+import { Facebook, Instagram, MailOutline, Phone, Pinterest, Room, Twitter } from '@mui/icons-material';
 import styled from 'styled-components';
 import { mobile } from '../responsive';
 

@@ -1,4 +1,4 @@
-import { Add, Remove } from '@material-ui/icons';
+import { Add, Remove } from '@mui/icons-material';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components'
 import Announcement from '../components/Announcement'
@@ -168,8 +168,8 @@ const Cart = () => {
 
     return (
         <Container>
-            <Navbar/>
             <Announcement/>
+            <Navbar/>
             <Wrapper>
                 <Title>YOUR BAG</Title>
                 <Top>

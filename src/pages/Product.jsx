@@ -1,4 +1,4 @@
-import { Add, Remove } from "@material-ui/icons";
+import { Add, Remove } from "@mui/icons-material";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
@@ -90,6 +90,7 @@ const Filter = styled.div`
 const FilterTitle = styled.span`
     font-size: 20px;
     font-weight: 200;
+    margin-bottom: 5px;
 `;
 
 const FilterColor = styled.div`
@@ -336,9 +337,9 @@ const Product = () => {
                                 ))}
                             </FilterSize> */}
                             <FilterButtonArea>
-                                <FilterButton value="S" onClick={handleSize} style={sizeStyle[0]}>Small + 0 USD</FilterButton>
-                                <FilterButton value="M" onClick={handleSize} style={sizeStyle[1]}>Medium + 0.5 USD</FilterButton>
-                                <FilterButton value="L" onClick={handleSize} style={sizeStyle[2]}>Large + 1 USD</FilterButton>
+                                <FilterButton value="S" onClick={handleSize} style={sizeStyle[0]}>Small</FilterButton>
+                                <FilterButton value="M" onClick={handleSize} style={sizeStyle[1]}>Medium</FilterButton>
+                                <FilterButton value="L" onClick={handleSize} style={sizeStyle[2]}>Large</FilterButton>
                             </FilterButtonArea>
                         </Filter>
                     </FilterContainer>
