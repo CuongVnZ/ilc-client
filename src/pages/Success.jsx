@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router";
-import { userRequest } from "../requestMethods";
+import { updateToken, userRequest } from "../requestMethods";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -26,6 +26,7 @@ const Success = () => {
     const [orderId, setOrderId] = useState(null);
 
     useEffect(() => {
+        updateToken()
         const createOrder = async () => {
 
         try {
@@ -50,7 +51,7 @@ const Success = () => {
         };
         data && createOrder();
         // navigate("/success", {}); 
-    }, [cart, data, currentUser, navigate, dispatch]);
+    }, [cart, data, currentUser, updateToken, navigate, dispatch]);
 
     return (
         <div
