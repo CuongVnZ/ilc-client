@@ -7,7 +7,6 @@ export const login = async (dispatch, user)=>{
         console.log(user)
         const res = await publicRequest.post("/auth/login", user)
         dispatch(loginSuccess(res.data))
-        updateToken()
     }catch(err){
         console.log(err)
         dispatch(loginFailure());

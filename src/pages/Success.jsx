@@ -26,7 +26,6 @@ const Success = () => {
     const [orderId, setOrderId] = useState(null);
 
     useEffect(() => {
-        updateToken()
         const createOrder = async () => {
 
         try {

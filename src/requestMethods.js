@@ -15,6 +15,7 @@ export const updateToken = () => {
   const currentUser = user && JSON.parse(user).currentUser;
   if (!currentUser) return
   TOKEN = currentUser.accessToken || "";
+  return TOKEN;
 };
 
 export const publicRequest = axios.create({
@@ -23,5 +24,5 @@ export const publicRequest = axios.create({
 
 export const userRequest = axios.create({
   baseURL: BASE_URL,
-  headers: { token: `Bearer ${TOKEN}` },
+  headers: { token: `Bearer ${updateToken()}` },
 });
