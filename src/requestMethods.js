@@ -15,6 +15,7 @@ export const updateToken = () => {
   const currentUser = user && JSON.parse(user).currentUser;
   if (!currentUser) return
   TOKEN = currentUser.accessToken || "";
+  console.log(TOKEN)
   return TOKEN;
 };
 

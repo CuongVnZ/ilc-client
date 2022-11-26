@@ -142,7 +142,11 @@ const Button = styled.button`
 const Cart = () => {
     const cart = useSelector(state=>state.cart)
     const [stripeToken, setStripeToken] = useState(null)
+
+    const currentUser = useSelector((state) => state.user.currentUser);
+
     const history = useNavigate()
+    const navigate = useNavigate()
     const dispatch = useDispatch();
 
     const onToken = (token) => {
@@ -150,6 +154,9 @@ const Cart = () => {
     }
     
     useEffect(() => {
+        if (currentUser == null) navigate("/login")
+        if (cart.products.length <= 0) navigate("/")
+
         const makeRequest = async () => {
             try{
                 const res = await userRequest.post("/checkout/payment", {

@@ -38,7 +38,7 @@ const Success = () => {
                 })),
                 amount: cart.total,
                 address: data.billing_details.address,
-                createdAt: new Date().toLocaleString('en-CA', {timeZone: "Asia/Ho_Chi_Minh", hour12: false}),
+                createdAt: new Date().toLocaleString('en-US', {timeZone: "Asia/Ho_Chi_Minh", hour12: false}),
                 status: "pending",
             });
             console.log(res)

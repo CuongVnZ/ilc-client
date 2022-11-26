@@ -74,7 +74,6 @@ export default function Profile() {
 
   
     useEffect(() => {
-        console.log(updateToken())
         const getOrders = async () => {
             try {
                 setLoading(<BusyLoading/>)

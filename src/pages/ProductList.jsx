@@ -75,7 +75,7 @@ const ProductList = () => {
                         <Option>Blue</Option>
                     </Select> */}
                     <Select name="category" onChange={handleCategory}>
-                        <Option selected value="all">
+                        <Option selected disabled value="all">
                             All
                         </Option>
                         <Option value="coffee">Coffee</Option>
