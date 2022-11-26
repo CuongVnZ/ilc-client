@@ -1,5 +1,5 @@
 import { Add, Remove } from '@mui/icons-material';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components'
 import Announcement from '../components/Announcement'
 import Footer from '../components/Footer'
@@ -9,6 +9,7 @@ import StripeCheckout from 'react-stripe-checkout';
 import { useEffect, useState } from 'react';
 import { userRequest } from './../requestMethods';
 import { useNavigate } from "react-router";
+import { resetCart } from '../redux/cartRedux';
 
 const KEY = process.env.REACT_APP_STRIPE
 
@@ -142,7 +143,7 @@ const Cart = () => {
     const cart = useSelector(state=>state.cart)
     const [stripeToken, setStripeToken] = useState(null)
     const history = useNavigate()
-
+    const dispatch = useDispatch();
 
     const onToken = (token) => {
         setStripeToken(token)
@@ -165,6 +166,10 @@ const Cart = () => {
         }
         stripeToken && makeRequest()
     }, [stripeToken, cart, history])
+
+    const resetCartHandler = () => {
+        dispatch(resetCart())
+    }
 
     return (
         <Container>
