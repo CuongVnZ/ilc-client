@@ -47,6 +47,7 @@ const Container = styled.div``;
 const Title = styled.h1`
     font-weight: 300;
     text-align: center;
+    margin-bottom: 10px;
 `;
 
 const Wrapper = styled.div`

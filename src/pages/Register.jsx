@@ -82,6 +82,7 @@ const Register = () => {
         setInputs((prev) => {
           return { ...prev, [e.target.name]: e.target.value };
         });
+        console.log(inputs)
     };
 
     return (
@@ -89,8 +90,7 @@ const Register = () => {
             <Wrapper>
                 <Title>CREATE AN ACCOUNT</Title>
                 <Form>
-                    <Input type="text" name="firstname" placeholder="First Name" />
-                    <Input type="text" name="firstname" placeholder="Last Name" />
+                    <Input type="text" name="fullname" placeholder="Full Name" onChange={handleChange}/>
                     <Input type="text" name="username" placeholder="Username" onChange={handleChange}/>
                     <Input type="text" name="email" placeholder="Email" onChange={handleChange}/>
                     <Input type="text" name="phone" placeholder="Phone number" onChange={handleChange}/>
