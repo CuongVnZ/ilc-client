@@ -118,7 +118,7 @@ const Navbar = () => {
                 </StyledLink> }
                 { user && 
                     <StyledLink to="/profile">
-                        <MenuItem>HI {user.username} !</MenuItem>
+                        <MenuItem>Hi, {user.username}!</MenuItem>
                     </StyledLink>
                 }
                 { user && 

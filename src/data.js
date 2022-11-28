@@ -1,23 +1,23 @@
 export const sliderItems = [
   {
     id: 1,
-    img: "https://file.hstatic.net/1000075078/file/3_79de83d7fe14444780d3f11e1d07ab20_master.jpg",
-    title: "SUMMER SALE",
-    desc: "DON'T COMPROISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS",
+    img: "https://i.pinimg.com/736x/3f/3e/35/3f3e359a9733d83e90ddafe615172bd6.jpg",
+    title: "CHRISTMAS SALE",
+    desc: "SALE OFF 30% ALL PRODUCTS DURING CHRISTMAS SESSION!",
     bg: "f5fafd",
   },
   {
     id: 2,
     img: "https://file.hstatic.net/1000075078/file/4_44c155ce28fe4ef6ae8bbe729e326117_master.jpg",
-    title: "SUMMER SALE",
-    desc: "DON'T COMPROISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS",
+    title: "NEW ARRIVAL",
+    desc: "DON'T COMPROISE ON STYLE! TRY OUR NEW ARRIVALS",
     bg: "fcf1ed",
   },
   {
     id: 3,
     img: "https://file.hstatic.net/1000075078/file/img_6556_5ec65f27b63e4edea6e4b509ac620c3f_master.jpg",
-    title: "Dreamy",
-    desc: "Enjoy your own world",
+    title: "DREAMY",
+    desc: "ENJOY YOUR OWN WAY OF COFFEE",
     bg: "fcf1ed",
   }
 ];

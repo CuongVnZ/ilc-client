@@ -78,7 +78,7 @@ const Footer = () => {
             <Left>
                 <Logo>Dreamy Coffee.</Logo>
                 <Desc>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Please notice that all products provided on this website are borrowed from The Coffee House. Copyright belongs to TCH. Thank you!
                 </Desc>
                 <SocialContainer>
                     <SocialIcon color="3B5999">
@@ -117,7 +117,7 @@ const Footer = () => {
                     <Phone style={{marginRight:"10px"}}/>+84 947 023 873
                 </ContactItem>
                 <ContactItem>
-                    <MailOutline style={{marginRight:"10px"}}/>edgcuong@gmail.com
+                    <MailOutline style={{marginRight:"10px"}}/>support@dreamycoffee.com
                 </ContactItem>
                 <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
             </Right>

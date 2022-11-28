@@ -15,6 +15,7 @@ import { useSelector } from 'react-redux';
 
 import { userRequest, updateToken } from "../requestMethods";
 import BusyLoading from '../components/BusyLoading';
+import Footer from '../components/Footer';
 
 const columns = [
   { id: '_id', label: 'ID', minWidth: 170 },
@@ -145,6 +146,7 @@ export default function Profile() {
                     />
                 </Paper>
             </Wrapper>
+            <Footer/>
         </Container>
         </>
     )

@@ -190,7 +190,7 @@ const Cart = () => {
                         {/* <TopText>Clear bag</TopText> */}
                         <TopText>Your Wishlist (0)</TopText>
                     </TopTexts>
-                    <TopButton type="filled">CLEAR</TopButton>
+                    <TopButton type="filled" onClick={resetCartHandler}>CLEAR</TopButton>
                 </Top>
                 <Bottom>
                     <Info>

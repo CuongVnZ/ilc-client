@@ -40,7 +40,7 @@ const Option = styled.option``;
 
 const ProductList = () => {
     const location = useLocation();
-    const [category, setCategory] = useState(location.pathname.split("/")[2] ? location.pathname.split("/")[2] : null);
+    const [category, setCategory] = useState(location.pathname.split("/")[2] ? location.pathname.split("/")[2] : "all");
     const [filters, setFilters] = useState({});
     const [sort, setSort] = useState("newest");
   

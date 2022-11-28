@@ -355,7 +355,7 @@ const Product = () => {
             </Wrapper>
             <Hr/>
             <OtherProducts>
-                <OtherProductsText>OTHER PRODUCTS</OtherProductsText>
+                <OtherProductsText>SIMILAR PRODUCTS</OtherProductsText>
                 <Products cat={product.category} filters={{}} sort="newest"/>
             </OtherProducts>
             <Newsletter />
