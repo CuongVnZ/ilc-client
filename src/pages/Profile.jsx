@@ -79,7 +79,7 @@ export default function Profile() {
         const getOrders = async () => {
             try {
                 setLoading(<BusyLoading/>)
-                const res = await userRequest.get("orders/find/" + user._id);
+                const res = await userRequest.get("orders/findByUser/" + user._id);
                 setOrders(res.data);
                 setLoading(null)
             } catch (err) {

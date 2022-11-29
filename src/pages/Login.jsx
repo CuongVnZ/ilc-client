@@ -62,6 +62,12 @@ const Link = styled.a`
     cursor: pointer;
 `;
 
+const StyledLink = styled(Link)`
+    text-decoration: none;
+    text-decoration-style: none;
+    color: inherit;
+`;
+
 const Login = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
@@ -83,7 +89,7 @@ const Login = () => {
                     <Button onClick={handleClick} disabled={isFetching}>LOGIN</Button>
                     {error && <Error>Something went wrong...</Error>}
                     <Link>DO NOT YOU REMEMBERR THE PASSWORD?</Link>
-                    <Link>CREATE A NEW ACCOUNT</Link>
+                    <StyledLink to="/register"><Link>CREATE A NEW ACCOUNT</Link></StyledLink>
                 </Form>
             </Wrapper>
         </Container>
