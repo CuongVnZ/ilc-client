@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import { userRequest } from './../requestMethods';
 import { useNavigate } from "react-router";
 import { resetCart } from '../redux/cartRedux';
+import { Link } from 'react-router-dom';
 
 const KEY = process.env.REACT_APP_STRIPE
 
@@ -142,6 +143,7 @@ const Button = styled.button`
 const Cart = () => {
     const cart = useSelector(state=>state.cart)
     const [stripeToken, setStripeToken] = useState(null)
+    const [cartValidate, setValidate] = useState([true, null])
 
     const currentUser = useSelector((state) => state.user.currentUser);
 
@@ -150,12 +152,15 @@ const Cart = () => {
     const dispatch = useDispatch();
 
     const onToken = (token) => {
-        if (currentUser == null) navigate("/login")
-        if (cart.products.length <= 0) navigate("/")
         setStripeToken(token)
     }
     
     useEffect(() => {
+        if (currentUser == null) {
+            setValidate([false, "/login"])
+        } else {
+            if (cart.products.length <= 0) setValidate([false, "/products"])
+        }
         const makeRequest = async () => {
             try{
                 const res = await userRequest.post("/checkout/payment", {
@@ -177,6 +182,10 @@ const Cart = () => {
         dispatch(resetCart())
     }
 
+    const handleClick = () => {
+        cartValidate[1] && navigate(cartValidate[1])
+    }
+
     return (
         <Container>
             <Announcement/>
@@ -184,7 +193,7 @@ const Cart = () => {
             <Wrapper>
                 <Title>YOUR BAG</Title>
                 <Top>
-                    <TopButton>CONTINUE SHOPPING</TopButton>
+                    <Link to="/products"><TopButton>CONTINUE SHOPPING</TopButton></Link>
                     <TopTexts>
                         {/* <TopText>Clear bag</TopText> */}
                         <TopText>Your Wishlist (0)</TopText>
@@ -238,18 +247,23 @@ const Cart = () => {
                             <SummaryItemText>Total</SummaryItemText>
                             <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
                         </SummaryItem>
-                        <StripeCheckout
-                            name = "Eldrie Shop"
-                            image = "https://avatars.githubusercontent.com/u/14831133?v=4"
-                            billingAddress
-                            shippingAddress
-                            description = {`Your total is $${cart.total}`}
-                            amount = {cart.total*100}
-                            token = {onToken}
-                            stripeKey = {KEY}
-                        >
-                        <Button>CHECKOUT NOW</Button>
-                        </StripeCheckout>
+                        { 
+                        cartValidate[0] ?
+                            <StripeCheckout
+                                name = "Eldrie Shop"
+                                image = "https://avatars.githubusercontent.com/u/14831133?v=4"
+                                billingAddress
+                                shippingAddress
+                                description = {`Your total is $${cart.total}`}
+                                amount = {cart.total*100}
+                                token = {onToken}
+                                stripeKey = {KEY}
+                            >
+                            <Button>CHECKOUT NOW</Button>
+                            </StripeCheckout>
+                            :
+                            <Button onClick={handleClick}>CHECKOUT NOW</Button>
+                        }
                     </Summary>
                 </Bottom>
             </Wrapper>
