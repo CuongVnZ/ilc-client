@@ -69,6 +69,7 @@ const Register = () => {
             try {
                 var res = await publicRequest.post("/auth/register", {
                     ...inputs,
+                    createdAt: new Date().toLocaleString('en-US', {timeZone: "Asia/Ho_Chi_Minh", hour12: false}),
                     points: 0
                 })
                 console.log(res)

@@ -150,13 +150,12 @@ const Cart = () => {
     const dispatch = useDispatch();
 
     const onToken = (token) => {
+        if (currentUser == null) navigate("/login")
+        if (cart.products.length <= 0) navigate("/")
         setStripeToken(token)
     }
     
     useEffect(() => {
-        if (currentUser == null) navigate("/login")
-        if (cart.products.length <= 0) navigate("/")
-
         const makeRequest = async () => {
             try{
                 const res = await userRequest.post("/checkout/payment", {
