@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { login } from '../redux/apiCalls';
@@ -56,7 +57,7 @@ const Error = styled.span`
     color: red;
 `;
 
-const Link = styled.a`
+const FormLink = styled.a`
     margin: 5px 0px;
     text-decoration: underline;
     cursor: pointer;
@@ -88,8 +89,8 @@ const Login = () => {
                     <Input type="text" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
                     <Button onClick={handleClick} disabled={isFetching}>LOGIN</Button>
                     {error && <Error>Something went wrong...</Error>}
-                    <Link>DO NOT YOU REMEMBERR THE PASSWORD?</Link>
-                    <StyledLink to="/register"><Link>CREATE A NEW ACCOUNT</Link></StyledLink>
+                    <FormLink>DO NOT YOU REMEMBERR THE PASSWORD?</FormLink>
+                    <StyledLink to="/register"><FormLink>CREATE A NEW ACCOUNT</FormLink></StyledLink>
                 </Form>
             </Wrapper>
         </Container>
