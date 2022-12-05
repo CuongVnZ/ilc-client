@@ -1,4 +1,4 @@
-import { Add, Remove } from "@mui/icons-material";
+import { Add, Remove, Star, StarBorder } from "@mui/icons-material";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
@@ -61,6 +61,14 @@ const InfoContainer = styled.div`
 const Title = styled.h1`
     font-weight: 200;
 `;
+
+const Rating = styled.div`
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #fdcc0d;
+`
 
 const Desc = styled.p`
     margin: 20px 0px;
@@ -172,6 +180,10 @@ const Button = styled.button`
     }
     margin-left: auto;
 `;
+
+const Reviews = styled.div`
+    
+`
 
 const OtherProducts = styled.div`
     margin-top: 30px;
@@ -307,13 +319,16 @@ const Product = () => {
             <Announcement />
             <Navbar />
             {loading}
-            <PathText>HOME | PRODUCTS | {product.title}</PathText>
+            <PathText>HOME | PRODUCT | {product.title}</PathText>
             <Wrapper>
                 <ImgContainer>
                     <Image src={product.img} />
                 </ImgContainer>
                 <InfoContainer>
                     <Title>{product.title}</Title>
+                    <Rating>
+                        <Star/><Star/><Star/><Star/><StarBorder/>
+                    </Rating>
                     <Hr/>
                     <Desc>{product.desc}</Desc>
                     <Price>$ {product.price}</Price>
@@ -353,6 +368,11 @@ const Product = () => {
                     </AddContainer>
                 </InfoContainer>
             </Wrapper>
+            {/* <Hr/>
+            <Reviews>
+                <OtherProductsText>REVIEWS</OtherProductsText>
+                Cuong: Ngon
+            </Reviews> */}
             <Hr/>
             <OtherProducts>
                 <OtherProductsText>SIMILAR PRODUCTS</OtherProductsText>

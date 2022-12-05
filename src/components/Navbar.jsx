@@ -60,7 +60,7 @@ const StyledLink = styled(Link)`
 const Logo = styled.h1`
     font-weight: bold;
     cursor: pointer;
-    ${mobile({ fontSize: "24px" })}
+    ${mobile({ fontSize: "20px" })}
 `;
 
 const Right = styled.div`
