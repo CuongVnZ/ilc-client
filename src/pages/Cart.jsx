@@ -12,7 +12,7 @@ import { useNavigate } from "react-router";
 import { resetCart } from '../redux/cartRedux';
 import { Link } from 'react-router-dom';
 
-const KEY = process.env.REACT_APP_STRIPE
+const KEY = import.meta.env.VITE_STRIPE;
 
 const Container = styled.div`
 
