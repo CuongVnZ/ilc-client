@@ -27,7 +27,7 @@ const columns = [
     format: (value) => value.toLocaleString('en-US'),
   },
   {
-    id: 'amount',
+    id: 'total',
     label: 'Total',
     minWidth: 170,
     align: 'right',
