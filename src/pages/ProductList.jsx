@@ -78,9 +78,9 @@ const ProductList = () => {
                         <Option selected disabled value="all">
                             All
                         </Option>
-                        <Option value="coffee">Coffee</Option>
-                        <Option value="tea">Juice Tea</Option>
-                        <Option value="milk-tea">Milk Tea</Option>
+                        <Option value="Coffee">Coffee</Option>
+                        <Option value="Tea">Juice Tea</Option>
+                        <Option value="Milk Tea">Milk Tea</Option>
                     </Select>
                 </Filter>
                 <Filter>
