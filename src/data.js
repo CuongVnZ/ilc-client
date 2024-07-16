@@ -25,19 +25,19 @@ export const sliderItems = [
 export const categories = [
   {
     id: 1,
-    img: "https://product.hstatic.net/1000075078/product/1639377738_ca-phe-sua-da_2986e33dd8654e37b94a4ea2dafb2bed.jpg",
+    img: "https://coffeeshop-vuejs.vercel.app/images/cat1.jpg",
     title: "COFFEE",
     cat: "coffee"
   },
   {
     id: 2,
-    img: "https://product.hstatic.net/1000075078/product/tra-dao-cam-xa_668678_f2f1d8a42a8d4213985a7fdddd93a7da_large.jpg",
+    img: "https://coffeeshop-vuejs.vercel.app/images/cat2.jpg",
     title: "JUICE TEA",
     cat: "tea"
   },
   {
     id: 3,
-    img: "https://product.hstatic.net/1000075078/product/hong-tra-sua-tran-chau_326977_cd665c8a1c514ec098652a6512d3ba2b.jpg",
+    img: "https://coffeeshop-vuejs.vercel.app/images/cat3.jpg",
     title: "MILK TEA",
     cat: "milk-tea"
   },
